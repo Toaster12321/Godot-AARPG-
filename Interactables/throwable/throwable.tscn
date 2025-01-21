@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://di2hxtp431jgq"]
+
+[ext_resource type="Script" path="res://Interactables/throwable/throwable.gd" id="1_ndw5g"]
+[ext_resource type="PackedScene" uid="uid://oavrxwhfmweh" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="2_8mr7s"]
+
+[node name="Throwable" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_ndw5g")
+
+[node name="HurtBox" parent="." instance=ExtResource("2_8mr7s")]
+collision_mask = 256

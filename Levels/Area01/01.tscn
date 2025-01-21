@@ -1,0 +1,171 @@
+[gd_scene load_steps=24 format=4 uid="uid://bpkkjjhc4r3dc"]
+
+[ext_resource type="Script" path="res://Levels/Scripts/level.gd" id="1_k8m7a"]
+[ext_resource type="PackedScene" uid="uid://bboda0v1nftsh" path="res://Tile Maps/grass-01.tscn" id="1_ww280"]
+[ext_resource type="PackedScene" uid="uid://d14vgrda1a3wo" path="res://Levels/player_spawn.tscn" id="2_cxnc5"]
+[ext_resource type="PackedScene" uid="uid://dlrke2ltpg30g" path="res://Levels/level_transition.tscn" id="4_rky4v"]
+[ext_resource type="PackedScene" uid="uid://dbodttkm053h7" path="res://Items/item_pickup/item_pickup.tscn" id="5_xurjy"]
+[ext_resource type="Resource" uid="uid://e66v0nrt882j" path="res://Items/gem.tres" id="6_a71uq"]
+[ext_resource type="Resource" uid="uid://bwi4b533a12cw" path="res://Items/potion.tres" id="7_q4uhy"]
+[ext_resource type="Resource" uid="uid://binhlppwi4p1n" path="res://Items/stone.tres" id="8_brs8a"]
+[ext_resource type="Resource" uid="uid://keq6q5ig143m" path="res://Items/apple.tres" id="9_7i6gv"]
+[ext_resource type="PackedScene" uid="uid://iu8vk4qmgnd7" path="res://Interactables/TreasureChest/treasure_chest.tscn" id="10_51x38"]
+[ext_resource type="AudioStream" uid="uid://b3n5oh0w16jrm" path="res://Levels/Music/example_music_01.ogg" id="12_580vr"]
+[ext_resource type="PackedScene" uid="uid://cg2doox5xwki1" path="res://npc/npc.tscn" id="13_d3bro"]
+[ext_resource type="PackedScene" uid="uid://ck56gt5e7ioi4" path="res://npc/npc_behavior_wander.tscn" id="14_grg0v"]
+[ext_resource type="Resource" uid="uid://cmm8t3vh1vhxs" path="res://npc/00_npcs/npc_01.tres" id="14_js2m0"]
+[ext_resource type="PackedScene" uid="uid://blflix4t7t745" path="res://Interactables/dialog/dialog_interaction.tscn" id="15_xgpb6"]
+[ext_resource type="Resource" uid="uid://tomghodsd13c" path="res://npc/00_npcs/npc_02.tres" id="16_3x7dm"]
+[ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_text.gd" id="16_ihaa3"]
+[ext_resource type="Resource" uid="uid://pfghc1w1el7l" path="res://npc/00_npcs/00_hero.tres" id="17_ofwxa"]
+[ext_resource type="PackedScene" uid="uid://bytcqe3emawua" path="res://npc/npc_behavior_patrol.tscn" id="17_ue0o1"]
+[ext_resource type="PackedScene" uid="uid://yfhruwu0t8go" path="res://npc/patrol_location.tscn" id="18_5ym4u"]
+[ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_choice.gd" id="21_hxfs6"]
+[ext_resource type="Script" path="res://Interactables/dialog/scripts/dialog_branch.gd" id="22_8o8ol"]
+[ext_resource type="PackedScene" uid="uid://bdycmqr1wjs28" path="res://Props/Pots/pot.tscn" id="23_jn2bh"]
+
+[node name="01" type="Node2D"]
+script = ExtResource("1_k8m7a")
+music = ExtResource("12_580vr")
+
+[node name="Grass-01" parent="." instance=ExtResource("1_ww280")]
+tile_map_data = PackedByteArray("AAD/////AAAOAAUAAAD//wAAAAAOAAYAAAAAAP//AAAKAAYAAAAAAAAAAAAJAAYAAAD//wEAAAAOAAUAAAD//wIAAAAOAAYAAAAAAAEAAAAKAAcAAAAAAAIAAAADAAMAAAD//wMAAAAOAAUAAAD//wQAAAAOAAYAAAAAAAMAAAADAAIAAAAAAAQAAAADAAMAAAD//wUAAAAOAAUAAAD//wYAAAAOAAYAAAAAAAUAAAADAAIAAAAAAAYAAAADAAMAAAD//wcAAAAOAAUAAAAAAAcAAAADAAIAAAABAAIAAAACAAMAAAACAAIAAAADAAMAAAABAAMAAAACAAIAAAABAAQAAAACAAMAAAACAAMAAAADAAIAAAACAAQAAAADAAMAAAABAAUAAAACAAIAAAABAAYAAAACAAMAAAACAAUAAAADAAIAAAACAAYAAAADAAMAAAABAAcAAAACAAIAAAACAAcAAAADAAIAAAADAAIAAAACAAMAAAAEAAIAAAADAAMAAAADAAMAAAACAAIAAAADAAQAAAACAAMAAAAEAAMAAAADAAIAAAAEAAQAAAADAAMAAAADAAUAAAACAAIAAAADAAYAAAACAAMAAAAEAAUAAAADAAIAAAAEAAYAAAADAAMAAAADAAcAAAACAAIAAAAEAAcAAAADAAIAAAAFAAIAAAACAAMAAAAGAAIAAAADAAMAAAAFAAUAAAACAAIAAAAFAAYAAAACAAMAAAAGAAUAAAADAAIAAAAGAAYAAAADAAMAAAAFAAcAAAACAAIAAAAGAAcAAAADAAIAAAAHAAIAAAACAAMAAAAIAAIAAAADAAMAAAAIAAMAAAADAAIAAAAIAAQAAAADAAMAAAAHAAUAAAACAAIAAAAHAAYAAAACAAMAAAAIAAUAAAADAAIAAAAIAAYAAAADAAMAAAAJAAIAAAACAAMAAAAJAAMAAAACAAIAAAAJAAQAAAACAAMAAAAKAAQAAAADAAMAAAAJAAUAAAACAAIAAAAJAAYAAAACAAMAAAAKAAUAAAADAAIAAAAKAAYAAAADAAMAAAAJAAcAAAACAAIAAAAKAAcAAAADAAIAAAALAAQAAAACAAMAAAAMAAQAAAADAAMAAAALAAUAAAACAAIAAAALAAYAAAACAAMAAAAMAAUAAAADAAIAAAAMAAYAAAADAAMAAAALAAcAAAACAAIAAAAMAAcAAAADAAIAAAAOAP//AAAOAAYAAAAOAAIAAAADAAMAAAANAAQAAAACAAMAAAAOAAMAAAAJAAQAAAAOAAQAAAAJAAQAAAANAAUAAAACAAIAAAANAAYAAAACAAMAAAAOAAUAAAADAAIAAAAOAAYAAAADAAMAAAANAAcAAAACAAIAAAAOAAcAAAADAAIAAAAPAP//AAAKAAUAAAAPAAAAAAAKAAYAAAAPAAEAAAAKAAYAAAAPAAIAAAAKAAcAAAAPAAMAAAAJAAQAAAAPAAQAAAAJAAQAAAAPAAUAAAAKAAQAAAAPAAYAAAAKAAUAAAAPAAcAAAAKAAUAAAAFAAMAAAACAAIAAAAFAAQAAAACAAMAAAAGAAMAAAADAAIAAAAGAAQAAAADAAMAAAAHAAMAAAACAAIAAAAHAAQAAAACAAMAAAABAAAAAAACAAUAAAABAAEAAAALAAcAAAACAAAAAAACAAUAAAACAAEAAAAMAAcAAAADAAAAAAADAAUAAAADAAEAAAANAAcAAAAEAAAAAAAEAAUAAAAEAAEAAAALAAcAAAAFAAAAAAACAAUAAAAFAAEAAAAMAAcAAAAGAAAAAAADAAUAAAAGAAEAAAANAAcAAAAHAAAAAAAEAAUAAAAHAAEAAAALAAcAAAAIAAAAAQAAAAEAAAAIAAEAAQAAAAIAAAAJAAAAAQABAAEAAAAJAAEAAQABAAIAAAAKAAAAAQACAAEAAAAKAAEAAQACAAIAAAALAAAAAAACAAUAAAALAAEAAAAMAAcAAAAMAAAAAAADAAUAAAAMAAEAAAANAAcAAAANAAAAAAAEAAUAAAANAAEAAAALAAcAAAABAP//AAALAAYAAAACAP//AAAMAAYAAAADAP//AAANAAYAAAAEAP//AAALAAYAAAAFAP//AAAMAAYAAAAGAP//AAANAAYAAAAHAP//AAALAAYAAAAIAP//AQAAAAAAAAAJAP//AQABAAAAAAAKAP//AQACAAAAAAALAP//AAALAAYAAAAMAP//AAAMAAYAAAANAP//AAANAAYAAAAOAAAAAAAJAAcAAAAOAAEAAAAOAAcAAAD//wgAAAAOAAYAAAAAAAgAAAAKAAQAAAABAAgAAAALAAQAAAACAAgAAAAMAAQAAAADAAgAAAANAAQAAAAEAAgAAAALAAQAAAAFAAgAAAALAAQAAAAGAAgAAAAOAAQAAAAHAAgAAAACAAMAAAAIAAgAAAADAAMAAAAJAAgAAAAKAAQAAAAKAAgAAAALAAQAAAALAAgAAAALAAQAAAAMAAgAAAAMAAQAAAANAAgAAAANAAQAAAAOAAgAAAAOAAQAAAAPAAgAAAAKAAYAAAAIAAcAAAADAAIAAAAHAAcAAAACAAIAAAAKAAIAAAAEAAMAAAAKAAMAAAADAAIAAAALAAIAAAACAAMAAAALAAMAAAACAAIAAAAMAAIAAAADAAMAAAAMAAMAAAADAAIAAAANAAIAAAACAAMAAAANAAMAAAACAAIAAAA=")
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("2_cxnc5")]
+position = Vector2(213, 152)
+
+[node name="ItemPickup" parent="." instance=ExtResource("5_xurjy")]
+position = Vector2(108, 134)
+item_data = ExtResource("6_a71uq")
+
+[node name="ItemPickup2" parent="." instance=ExtResource("5_xurjy")]
+position = Vector2(66, 103)
+item_data = ExtResource("7_q4uhy")
+
+[node name="ItemPickup3" parent="." instance=ExtResource("5_xurjy")]
+position = Vector2(69, 168)
+item_data = ExtResource("8_brs8a")
+
+[node name="ItemPickup4" parent="." instance=ExtResource("5_xurjy")]
+position = Vector2(26, 149)
+item_data = ExtResource("9_7i6gv")
+
+[node name="TreasureChest" parent="." instance=ExtResource("10_51x38")]
+position = Vector2(155, 103)
+item_data = ExtResource("7_q4uhy")
+quantity = 2
+
+[node name="TreasureChest2" parent="." instance=ExtResource("10_51x38")]
+position = Vector2(154, 155)
+item_data = ExtResource("6_a71uq")
+
+[node name="TreasureChest3" parent="." instance=ExtResource("10_51x38")]
+position = Vector2(153, 217)
+item_data = ExtResource("8_brs8a")
+quantity = 50
+
+[node name="LevelTransition" parent="." instance=ExtResource("4_rky4v")]
+position = Vector2(256, 288)
+level = "res://Levels/Area01/02.tscn"
+side = 3
+
+[node name="LevelTransition2" parent="." instance=ExtResource("4_rky4v")]
+position = Vector2(512, 128)
+level = "res://Levels/Area01/03.tscn"
+side = 1
+
+[node name="LevelTransition3" parent="." instance=ExtResource("4_rky4v")]
+position = Vector2(304, 48)
+level = "res://Levels/Dungeon01/01.tscn"
+center_player = true
+size = 3
+side = 2
+
+[node name="NPC" parent="." instance=ExtResource("13_d3bro")]
+position = Vector2(321, 233)
+npc_resource = ExtResource("14_js2m0")
+
+[node name="NpcBehaviorWander" parent="NPC" instance=ExtResource("14_grg0v")]
+wander_range = 1
+
+[node name="DialogInteraction" parent="NPC" instance=ExtResource("15_xgpb6")]
+
+[node name="DialogText" type="Node" parent="NPC/DialogInteraction"]
+script = ExtResource("16_ihaa3")
+text = "Hi [b]Hero[/b], is that you?"
+npc_info = ExtResource("14_js2m0")
+
+[node name="DialogText2" type="Node" parent="NPC/DialogInteraction"]
+script = ExtResource("16_ihaa3")
+text = "[wave] Heck yeah its me! [/wave]"
+npc_info = ExtResource("17_ofwxa")
+
+[node name="DialogText3" type="Node" parent="NPC/DialogInteraction"]
+script = ExtResource("16_ihaa3")
+text = "Nice Bro!
+You are an epic gamer!"
+npc_info = ExtResource("14_js2m0")
+
+[node name="NPC2" parent="." instance=ExtResource("13_d3bro")]
+position = Vector2(338, 82)
+npc_resource = ExtResource("16_3x7dm")
+
+[node name="NpcBehaviorPatrol" parent="NPC2" instance=ExtResource("17_ue0o1")]
+
+[node name="PatrolLocation" parent="NPC2/NpcBehaviorPatrol" instance=ExtResource("18_5ym4u")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, 1)
+wait_time = 1.0
+
+[node name="PatrolLocation3" parent="NPC2/NpcBehaviorPatrol" instance=ExtResource("18_5ym4u")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(30, 41)
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="NPC2/NpcBehaviorPatrol" instance=ExtResource("18_5ym4u")]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(60, 1)
+wait_time = 1.0
+
+[node name="DialogInteraction" parent="NPC2" instance=ExtResource("15_xgpb6")]
+
+[node name="DialogText" type="Node" parent="NPC2/DialogInteraction"]
+script = ExtResource("16_ihaa3")
+text = "Yo! Hero! Will you help retrieve my magical flute 
+from the dark dungeon?"
+npc_info = ExtResource("16_3x7dm")
+
+[node name="DialogChoice" type="Node" parent="NPC2/DialogInteraction"]
+script = ExtResource("21_hxfs6")
+npc_info = ExtResource("16_3x7dm")
+
+[node name="DialogBranch" type="Node" parent="NPC2/DialogInteraction/DialogChoice"]
+script = ExtResource("22_8o8ol")
+text = "Count me in!"
+npc_info = ExtResource("16_3x7dm")
+
+[node name="DialogText" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch"]
+script = ExtResource("16_ihaa3")
+text = "Thank you hero! I love you!
+You are a true specimen!"
+npc_info = ExtResource("16_3x7dm")
+
+[node name="DialogText2" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch"]
+script = ExtResource("16_ihaa3")
+text = "Oh, and be careful of the evil wizard who lurks
+in the dungeon..."
+npc_info = ExtResource("16_3x7dm")
+
+[node name="DialogBranch2" type="Node" parent="NPC2/DialogInteraction/DialogChoice"]
+script = ExtResource("22_8o8ol")
+text = "No..."
+npc_info = ExtResource("16_3x7dm")
+
+[node name="DialogText" type="Node" parent="NPC2/DialogInteraction/DialogChoice/DialogBranch2"]
+script = ExtResource("16_ihaa3")
+text = "...asshole
+"
+npc_info = ExtResource("16_3x7dm")
+
+[node name="Pot" parent="." instance=ExtResource("23_jn2bh")]
+position = Vector2(210, 193)

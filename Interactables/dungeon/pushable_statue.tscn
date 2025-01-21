@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmcy74mfsiyfh"]
+
+[ext_resource type="Script" path="res://Interactables/dungeon/scripts/pushable_statue.gd" id="1_fb8k4"]
+[ext_resource type="Texture2D" uid="uid://coljjysg3ysj4" path="res://Interactables/dungeon/dungeon_props.png" id="1_r4qvl"]
+[ext_resource type="AudioStream" uid="uid://bskhiks1cwkqq" path="res://Interactables/dungeon/push_stone.wav" id="3_t55pk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5udgh"]
+size = Vector2(30, 12)
+
+[node name="PushableStatue" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 273
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_fb8k4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_5udgh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -17)
+texture = ExtResource("1_r4qvl")
+region_enabled = true
+region_rect = Rect2(384, 0, 32, 48)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_t55pk")
