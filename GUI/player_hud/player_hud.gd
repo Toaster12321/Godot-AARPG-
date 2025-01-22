@@ -1,6 +1,9 @@
 extends CanvasLayer
 #no class names for autoload scenes
 
+@export var button_focus_audio : AudioStream = preload("res://Title Scene/audio/menu_focus.wav")
+@export var button_select_audio : AudioStream = preload("res://Title Scene/audio/menu_select.wav")
+
 var hearts : Array[ HeartGUI ] = []
 
 

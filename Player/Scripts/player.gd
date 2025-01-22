@@ -45,6 +45,14 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta):
 	move_and_slide()
 
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("test"):
+		update_hp(-99)
+	player_damaged.emit(%AttackHurtBox)
+	pass
+
+
 func SetDirection() -> bool:
 	if direction == Vector2.ZERO: 
 		return false
@@ -59,11 +67,13 @@ func SetDirection() -> bool:
 	DirectionChanged.emit( new_dir )
 	sprite.scale.x =  -1 if cardinal_direction == Vector2.LEFT else 1
 	return true
-	
+
+
 func UpdateAnimation( state : String ) -> void:
 	animation_player.play(state + "_" + AnimDirection())
 	pass
-	
+
+
 func AnimDirection() -> String: 
 	if cardinal_direction == Vector2.DOWN:
 		return "down"
@@ -76,12 +86,11 @@ func AnimDirection() -> String:
 func _take_damage( hurt_box : HurtBox ) -> void:
 	if invulnerable == true:
 		return
-	update_hp( -hurt_box.damage )
+	
 	if hp > 0:
+		update_hp( -hurt_box.damage )
 		player_damaged.emit( hurt_box )
-	else:
-		player_damaged.emit( hurt_box )
-		update_hp( 99 )
+	
 	pass
 
 
