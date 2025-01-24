@@ -15,6 +15,7 @@ func Enter() -> void:
 	audio.stream = exhaust_audio
 	audio.play()
 	#trigger game over UI
+	PlayerHud.show_game_over_screen()
 	AudioManager.play_music( null )
 	pass
 	

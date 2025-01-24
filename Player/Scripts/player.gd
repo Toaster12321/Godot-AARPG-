@@ -49,7 +49,8 @@ func _physics_process(_delta):
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
 		update_hp(-99)
-	player_damaged.emit(%AttackHurtBox)
+		player_damaged.emit(%AttackHurtBox)
+	
 	pass
 
 
@@ -115,3 +116,8 @@ func pickup_item( _t : Throwable ) -> void:
 	# store throwable object
 	carry.throwable = _t
 	pass
+
+
+func revive_player() -> void:
+	update_hp( 99 )
+	state_machine.ChangeState( $StateMachine/Idle )
